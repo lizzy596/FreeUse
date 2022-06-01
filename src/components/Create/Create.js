@@ -58,7 +58,7 @@ const Create = () => {
         dispatch({type: JUST_POSTED})
         // dispatch(createPost(postInfo));
          clear()
-         navigate('/')
+         //navigate('/')
 
       }
   

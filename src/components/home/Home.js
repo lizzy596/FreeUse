@@ -52,7 +52,7 @@ const Home = () => {
 
 
 
- console.log(isLoading)
+
 
   
   //useEffect(()=> {

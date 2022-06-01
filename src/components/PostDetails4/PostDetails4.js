@@ -20,7 +20,7 @@ const PostDetails4 = () => {
   
 
 
-  const { posts, post, isLoading, justEdited, justPosted, error, message }= useSelector((state) => state.posts);
+  const { posts, post, isLoading, justEdited, justPosted, error, message, success, create_message }= useSelector((state) => state.posts);
  
 
  const [recommendedPosts, setRecommendedPosts] = useState([])
@@ -36,6 +36,37 @@ const PostDetails4 = () => {
 
 
   useEffect(() => {
+
+    if(justEdited) {
+      dispatch({type: START_LOADING})
+      dispatch(getPost2(id));
+      
+    }
+   
+   
+  }, [justEdited]);
+
+
+  useEffect(() => {
+
+    if(justEdited) {
+      dispatch({type: START_LOADING})
+      dispatch(getPost2(id));
+      
+    }
+   
+   
+  }, []);
+
+
+
+
+
+  
+  
+  
+  
+  useEffect(() => {
     setRecommendedPosts(posts.filter((item) => item._id !== id))
     
    
@@ -48,11 +79,12 @@ const PostDetails4 = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
+     
       dispatch({ type: END_JUST_EDITED})
-    }, 1000);
+    }, 2000);
     return () => clearTimeout(timeout);
 
-  }, [justEdited])
+  }, [success])
 
 
 
@@ -141,8 +173,8 @@ useEffect(() => {
     </div>
 
     <div className={classes.title2}>
-    {justEdited && <AlertMessage2 msg={'Post updated!'} />}
-    {justPosted && <AlertMessage2 msg={'Post created successfully!'} />}
+    {success && <AlertMessage2 msg={create_message} />}
+   
     </div>
     </div>
   

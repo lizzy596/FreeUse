@@ -3,21 +3,21 @@ import { GET_ALL, CREATE, GET_ONE, FETCH_BY_SEARCH, START_LOADING, END_LOADING, 
 
 
 
-export default (state = { isLoading: true, search:false, isEditing: false, posts: [],  justEdited: false, justPosted: false, searchItem: '', error: false, message: ''}, action) => {
+export default (state = { isLoading: true, search:false, isEditing: false, posts: [],  justEdited: false, justPosted: false, searchItem: '', error: false, message: '', success: false, create_message: ''}, action) => {
     switch (action.type) {
       case START_LOADING:
         return { ...state, isLoading: true };
       case END_LOADING:
         return { ...state, isLoading: false };
       case JUST_EDITED:
-        return { ...state, justEdited: true };
+        return { ...state, justEdited: true, success: true, create_message: 'Post Updated Successfully!', isLoading: true };
       case END_JUST_EDITED:
-        return { ...state, justEdited: false };
+        return { ...state, justEdited: false, success: false, create_message: ''  };
      
       case JUST_POSTED:
-        return { ...state, justPosted: true};
+        return { ...state, justPosted: true, success: true, create_message: 'Post Created Successfully!' };
       case END_JUST_POSTED:
-        return { ...state, justPosted: false };
+        return { ...state, justPosted: false, success: false, create_message: '' };
       case SET_SEARCH:
         return { ...state, search: true};
         case SET_SEARCH_ITEM:
